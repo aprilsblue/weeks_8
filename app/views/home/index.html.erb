@@ -1,0 +1,42 @@
+<a href="/users/sign_out">Log Out</a>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form action="/home/upload" method="POST" enctype="multipart/form-data" style="margin-top:30px;">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input name="title" type="text" class="form-control" id="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea name="content" type="text" class="form-control" id="content" row=5 placeholder="Content"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="file">File input</label>
+          <input name="file" type="file" id="file">
+        </div>
+        <button type="submit" class="btn btn-default" style="margin-bottom:30px;">Submit</button>
+      </form>
+      
+      <% @posts.each do |p| %>
+        <div class="well">
+          <table class="post_table">
+            <tr>
+              <td rowspan=3><img src="<%= p.file_name %>" class="post_image"/></td>
+              <td class="table_td"><strong><%= p.user.email %></strong></td>
+            </tr>
+            <tr>
+              <td class="table_td">제  목 : <%= p.title %></td>
+            </tr>
+            <tr>
+              <td class="table_td">내  용 : <%= p.content %></td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
